@@ -58,3 +58,16 @@ resilience4j:
 feign:
   circuitbreaker:
     enabled: 'true'
+
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: event:com.example.orderservice.event.OrderPlacedEvent
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: notificationTopic
+    bootstrap-servers: localhost:9092
