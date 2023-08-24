@@ -71,3 +71,10 @@ feign:
     template:
       default-topic: notificationTopic
     bootstrap-servers: localhost:9092
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
